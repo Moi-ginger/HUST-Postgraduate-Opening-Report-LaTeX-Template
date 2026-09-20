@@ -281,7 +281,7 @@
 % 支持引用缩写的宏包
 \RequirePackage[hyperref = true, 
 backend=biber,
-citestyle=gb7714-2015ay, 
+citestyle=gb7714-2015, 
 url = false, 
 doi = false,
 gbnamefmt=lowercase, 

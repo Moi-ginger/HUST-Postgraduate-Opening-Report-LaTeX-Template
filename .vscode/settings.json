@@ -1,10 +1,11 @@
 {
-    "latex-workshop.latex.autoBuild.run": "onSave",
-    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.build.forceRecipeUsage": true,
+    "latex-workshop.latex.recipe.default": "xelatex -> biber -> xelatex*2",
     "latex-workshop.latex.tools": [
         {
             "name": "xelatex",
-            "command": "xelatex",
+            "command": "/Users/GillianChen/texlive/2026/bin/universal-darwin/xelatex",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
@@ -14,20 +15,20 @@
             "env": {}
         },
         {
-            "name": "bibtex",
-            "command": "bibtex",
+            "name": "biber",
+            "command": "/Users/GillianChen/texlive/2026/bin/universal-darwin/biber",
             "args": [
                 "%DOCFILE%"
             ],
             "env": {}
-        },
+        }
     ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "xelatex -> bibtex -> xelatex*2",
+            "name": "xelatex -> biber -> xelatex*2",
             "tools": [
                 "xelatex",
-                "bibtex",
+                "biber",
                 "xelatex",
                 "xelatex"
             ]
@@ -36,6 +37,7 @@
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
         "*.bbl",
+        "*.bcf",
         "*.blg",
         "*.idx",
         "*.ind",

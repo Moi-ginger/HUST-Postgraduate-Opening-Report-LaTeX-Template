@@ -3,282 +3,48 @@
 %%% TeX-master: t
 %%% End:
 
-\documentclass[draftformat,mathCMR]{HUSTthesis}
-%\documentclass[finalformat,mathCMR]{HUSTthesis}
-% 所有其它可能用到的包都统一放到这里了，可以根据自己的实际添加或者删除。这样做
-% 主要是为了避免class文件过于臃肿。
+\documentclass[oneside,finalformat,mathCMR]{HUSTthesis}
 \usepackage{HUSTtils}
-% \setmainfont{Times New Roman}[Scale=.9]
 \setmainfont{Times New Roman}
 
-%\includeonly{body/chap02}
-% \setcitestyle{authoryear, open={( },close={ )}}
-
-\usepackage[stable]{footmisc}
-\usepackage{xcolor}
-\usepackage{soul}
-
-
-\newcommand*\red[1]{\textcolor{red}{#1}}
-% \setul{0.5ex}{0.3ex}
-\usepackage{xeCJKfntef}
-\newcommand\redline[1]{\CJKunderline[skip=false,format=\color{red}]{#1}}
-
-\usepackage{mathtools}
-% \let\proof\relax
-% \let\endproof\relax
-% \let\theoremstyle\relax
-% \let\newtheoremstyle\relax
-% \usepackage{amsthm}
-% \usepackage{amssymb}
-\usepackage{amsmath,amssymb,bm}
-\DeclareMathOperator*{\argmax}{argmax}
-\DeclareMathOperator*{\argmin}{argmin}
-\DeclareMathOperator{\trans}{{\mathrm{T}}}
-\DeclareMathOperator*{\avg}{Avg}
-\newcommand*\abs[1]{\left \lvert#1 \right \rvert}
-\newcommand*\norm[1]{\left \lVert #1 \right \rVert}
-\newcommand\x{\bm{x}}
-\newcommand\y{\bm{y}}
-\newcommand\e{\bm{e}}
-\newcommand\h{\bm{h}}
-\newcommand\w{\bm{w}}
-\newcommand\g{\bm{g}}
-\newcommand\m{\bm{m}}
-\newcommand\bs{\bm{s}}
-\newcommand\bp{\bm{p}}
-\newcommand\brho{\bm{\rho}}
-\newcommand\bv{\bm{v}}
-\newcommand\bu{\bm{u}}
-\newcommand\mathr{\mathbb{R}}
-\newcommand\mathd{\mathbb{D}}
-
-% \usepackage[e]{esvect}
-% \newcommand{\uv}[2][2mu]{\vec{#2\mkern-#1}\mkern#1}
-
-% *** SPECIALIZED LIST PACKAGES ***
-\usepackage{algorithm, algorithmic}
-% \newcommand{\algorithmautorefname}{Algorithm}
-
-\usepackage{breqn}
-
-\usepackage{pifont}
-\newcommand{\cmark}{\ding{51}}
-\newcommand{\xmark}{\ding{55}}
-\newcommand{\rfist}{\ding{192}~}
-\newcommand{\rsecond}{\ding{193}~}
-\newcommand{\rthird}{\ding{194}~}
-
-\usepackage{marginnote}
-\usepackage{multirow,makecell}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
 \usepackage{tabularx}
-% \usepackage{ltablex} %load to using long tabularx
-% \keepXColumns %solve the problem that tabularx does not fill full textwidth when using ltablex
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
-\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{pdfpages}
 
-\newcommand\ph{$\phantom{1}$} 
-\newcommand\s{$^\star$}
+% The source report uses numeric citations; keep them real and clickable.
+\ExecuteBibliographyOptions{sorting=none}
+\addbibresource[location=local]{ref/report.bib}
 
-\newlength{\twosubht}
-\newsavebox{\twosubbox}
-
-% 修改autoref前后间距，解决标签应用后的前后间距问题
-\usepackage{letltxmacro}
-\LetLtxMacro\oldautoref\autoref
-\DeclareRobustCommand{\autoref}[1]{{\let\nobreakspace\space\oldautoref{#1}\space}}
-
-\newcommand*\secref[1]{\ref{#1}节}
-
-\usepackage{cleveref}
-\newcommand{\crefrangeconjunction}{~--~}
-\Crefname{table}{表}{表}
-\Crefname{figure}{图}{图}
-
-% %%  using line number.
-% \usepackage[pagewise]{lineno}
-% \makeatletter
-% \def\makeLineNumberLeft{%
-%   \linenumberfont\llap{\hb@xt@\linenumberwidth{\LineNumber\hss}\hskip\linenumbersep}% left line number
-%   \hskip\columnwidth% skip over column of text
-%   \rlap{\hskip\linenumbersep\hb@xt@\linenumberwidth{\hss\LineNumber}}\hss}% right line number
-% \leftlinenumbers% Re-issue [left] option
-% \makeatother
-
-\addbibresource[location=local]{ref/thesis.bib}%使用biblatex
-
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\emergencystretch=3em
 
 \begin{document}
-%定义所有的eps文件在 figures 子目录下
 \graphicspath{{figures/}}
 
-% 生成封面，版权页，摘要
-
 \frontmatter
-\input{body/cover}
-\makecover
-\makeattention
+% Use page 1 exported directly from the Word template so the cover keeps
+% the original template's typography, logo, rules, and spacing.
+\includepdf[pages=1,scale=1.154,pagecommand={\thispagestyle{empty}}]{figures/template-cover.pdf}
+\input{body/attention}
 
-%目录
 \pagenumbering{gobble}
 \tableofcontents
 
-% 对照表
-% \include{body/denotation}
-
 \mainmatter
-
 \raggedbottom
-%% using line count
-% \linenumbers
 
-% \nolinenumbers
-%%% 结论
-%\input{body/chapter/cnn.tex}
-%\input{body/chapter/univ.tex}
+\input{body/literature-cards}
+\input{body/literature-review}
+\input{body/selection-report}
 
-\chapter{选题来源、背景、目的和意义}
-
-\section{选题来源}
-引用方式：\begin{description}
-	\item[句首引用] \verb|\citet{alitappehMultirobotExplorationTask2022}|。\citet{alitappehMultirobotExplorationTask2022}
-	\item[句中引用] \verb|\cite{alitappehMultirobotExplorationTask2022}|。\cite{alitappehMultirobotExplorationTask2022}
-\end{description}
-
-带圈标号：\begin{description}
-	\item[代码] \verb|\ding{192}~\ding{200}|
-	\item[显示] \ding{192}\~{} \ding{200}
-\end{description}
-
-
-一个三线表
-表~\ref{tab:template-files} 列举了本模板主要文件及其功
-能。
-\begin{table}[htb]
-	\centering
-	\caption{模板文件清单}
-	\label{tab:template-files}
-	\begin{minipage}[t]{0.8\linewidth} % 如果想在表格中使用脚注，minipage是个不错的办法
-		\begin{tabular*}{\linewidth}{m{3cm}m{10cm}}
-			\toprule[1.5pt]
-			{\hei 文件名}  & {\hei 描述} \\\midrule[1pt]
-			HUSTthesis.cls & 模板类文件\\
-			HUSTbib.bst    & 参考文献~Bib\TeX{} 样式文件\\
-			HUSTtils.sty   & 常用的包和命令写在这里，减轻主文件的负担\\
-			\bottomrule[1.5pt]
-		\end{tabular*}
-	\end{minipage}
-\end{table}
-
-
-
-\section{研究背景}
-\section{研究目的和意义}
-
-
-
-\chapter{国内外研究现状}
-
-
-
-\section{文献小结与评述}
-
-
-\chapter{研究方案}
-\section{研究框架和主要内容}
-
-
-%\chapter{研究计划与进度安排}
-
-\section{研究方法和技术路线}
-
-
-换页的地方间距不够可以插入一个换行
-
-\section{论文整体结构}
-\def\labelenumi{\textbf{\theenumi} }\def\theenumi{\arabic{enumi}}
-\def\labelenumii{\theenumi.\theenumii }\def\theenumii{\arabic{enumii}}
-%\begin{mdframed}
-\begin{mdframed}[everyline=true]\label{enum}
-	\begin{enumerate}
-		\item \textbf{绪论}
-		\begin{enumerate}
-			\item 背景研究
-			\item 研究目的与意义
-			\item 研究内容与章节结构
-			\item 研究方法与技术路线
-			\item 主要创新点
-		\end{enumerate}
-		\item \textbf{国内外相关研究综述}
-		\begin{enumerate}
-			\item 相关研究1
-			\item 相关研究2
-			\item 相关研究3\\%换行
-		
-			\item 文献小结与评述
-		\end{enumerate}
-		\item \textbf{问题1}
-		\begin{enumerate}
-			\item 问题提出
-			\item 问题描述与数学模型
-			\item 算法实现
-			\item 实验结果与分析
-			\item 本章小结
-		\end{enumerate}
-		\item \textbf{问题2}
-		\begin{enumerate}
-			\item 研究背景
-			\item 问题描述与数学模型
-			\item 算法实现
-			\item 实验结果与分析
-			\item 本章小结
-		\end{enumerate}
-		\item \textbf{全文总结及研究展望}
-		\begin{enumerate}
-			\item 全文总结
-			\item 研究展望
-		\end{enumerate}
-	\end{enumerate}
-\end{mdframed}
-
-\chapter{研究进度安排}
-\begin{table}[htb]\caption{研究进度安排}\label{tab:research}
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{lcp{10cm}}
-			\hline
-			& \textbf{时间安排}                         & \hspace{4cm}\textbf{具体任务}                                \\ \hline
-			\multicolumn{1}{l|}{\multirow{6}{*}{前期准备}} & xx$\sim$xx                 & 广泛查阅国内外相关文献，收集研究论文、调研报告、商业案例、数据集等相关资料； \\
-			\multicolumn{1}{l|}{}                      & xx$\sim$xx & 总结分析相关文献和资料，梳理并归纳总结现有研究进展，整理文献综述；            \\
-			\multicolumn{1}{l|}{}                      &                                       & 确定重点研究问题和研究方案，完成开题报告，通过资格审查；                 \\ \hline
-			\multicolumn{1}{l|}{\multirow{8}{*}{中期研究}} & xx$\sim$xx                       & 开展研究，完成研究问题一；             \\
-			\multicolumn{1}{l|}{}                      & xx$\sim$xx                       & 开展研究，完成研究问题二；              \\
-			\multicolumn{1}{l|}{}                      &                                       & 完成中期考核报告，答辩并通过中期考核评议；                        \\
-			\multicolumn{1}{l|}{}                      & xx$\sim$xx                       & 开展研究，完成研究问题三；             \\
-			\multicolumn{1}{l|}{}                      &                                       & 参加国内外学术会议，与同行交流研究成果；                         \\ \hline
-			\multicolumn{1}{l|}{\multirow{4}{*}{后期成稿}} & xx$\sim$xx                       & 撰写并完成博士论文初稿，组织开展预答辩；                         \\
-			\multicolumn{1}{l|}{}                      &                                       & 根据预答辩意见修改论文，查重通过后提交盲审送审；                     \\
-			\multicolumn{1}{l|}{}                      & xx$\sim$xx                      & 根据送审意见修改论文，完成论文答辩稿；                          \\
-			\multicolumn{1}{l|}{}                      &                                       & 举行答辩，根据答辩意见修改论文，完成论文终稿并提交。                   \\ \hline
-		\end{tabular}%
-	}
-\end{table}
-
-
-
-
-
+\nocite{*}
 \phantomsection
 \addcontentsline{toc}{chapter}{参考文献}
 \printbibliography[heading=bibliography,title=参考文献]
-
-\makesignature
-
-% ---------------------------------------------
-
-%%% 附录
-%\begin{aendix}
-%  \input{body/aendix/a.tex}
-%
-%\end{aendix}
 
 \end{document}
