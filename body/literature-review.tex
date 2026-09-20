@@ -68,7 +68,7 @@ Agent可观测研究首先解决“记录什么”。AgentTrace提出操作、�
 \label{tab:report-1}
 \scriptsize
 \renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.85cm} *{5}{>{\raggedright\arraybackslash}X}}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.65cm} *{5}{>{\raggedright\arraybackslash}X}}
 \toprule
 \textbf{代表工作} & \textbf{主要表示} & \textbf{核心交互} & \textbf{轨迹—机制关联} & \textbf{证据状态呈现} & \textbf{人因评价特点} \\
 \midrule
@@ -185,4 +185,3 @@ Agent可观测研究的评价大致分为三类。第一类是系统展示和使
 本章围绕Agent Harness运行理解梳理了五条相关研究线索。其一，LLM产品评价和Harness研究表明，最终表现不能解释系统下一步应修改什么，静态Agent规格也不能替代真实运行证据\cite{ref01,ref20,ref29}。其二，传统调试与意义建构研究说明，开发者需要从可观察异常出发提出why与why-not问题，在信息拓扑中搜索，并通过证据持续修正解释框架\cite{ref05,ref08,ref12,ref17}。其三，Agent可观测与交互调试工具已经能够记录、浏览、下钻和干预长轨迹，但轨迹结构、机制实现与证据强度尚未被统一呈现\cite{ref02,ref18,ref23}。其四，分布式追踪和provenance研究提供了稳定标识、因果关联、语义层级和可核查历史等技术基础，同时强调缺失记录不能被解释为事件未发生\cite{ref30,ref31,ref36,ref37}。其五，不确定性与人因评价研究表明，界面不仅要提供更多信息，还要帮助用户校准结论，并通过具有客观真值的任务检验理解是否真正改善\cite{ref04,ref33,ref39,ref40}。
 
 因此，当前领域的核心矛盾已不是“能否收集Agent日志”，而是“能否把分散的运行证据组织成开发者可检查的轨迹—机制关联，并明确关联的证据状态”。本研究拟在这一交叉点上展开：把运行时上下文构造作为主要机制切口，把人的理解与故障定位作为主要任务，把记录、推导和未知作为关键界面变量，并通过条件隔离的受控实验检验其贡献与意义。
-

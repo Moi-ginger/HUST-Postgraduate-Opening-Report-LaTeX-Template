@@ -125,7 +125,10 @@
 \DeclareOption{draftformat}{\HUST@finalformatfalse}
 \DeclareOption{finalformat}{\HUST@finalformattrue}
 
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{book}}
+% Forward standard document options (for example, oneside/twoside) to the
+% underlying book class.  Passing them as package options leaves book in its
+% default twoside mode and makes geometry restore mirrored margins.
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions
 \LoadClass[12pt, a4paper, openany]{book}
 
@@ -279,13 +282,14 @@
 % 控制目录风格的宏包
 \RequirePackage{titletoc}
 % 支持引用缩写的宏包
-\RequirePackage[hyperref = true, 
+\RequirePackage[hyperref = true,
 backend=biber,
-citestyle=gb7714-2015, 
-url = false, 
-doi = false,
+citestyle=gb7714-2025,
+url = true,
+doi = true,
+eprint = true,
 gbnamefmt=lowercase, 
-bibstyle = gb7714-2015,
+bibstyle = gb7714-2025,
 gbcitelocal=chinese]{biblatex}
 %\setcitestyle{authoryear, open={(},close={)}}
 %\citestyle{authoryear}

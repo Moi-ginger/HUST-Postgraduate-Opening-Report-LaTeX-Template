@@ -74,7 +74,9 @@ def table_tex(table, caption, number):
         return ""
     ncols = len(rows[0])
     if ncols == 6:
-        spec = r">{\raggedright\arraybackslash}p{1.85cm} *{5}{>{\raggedright\arraybackslash}X}"
+        # The first column contains unspaced product names such as
+        # "AgentStepper"; 2.65 cm prevents them from crossing cell borders.
+        spec = r">{\raggedright\arraybackslash}p{2.65cm} *{5}{>{\raggedright\arraybackslash}X}"
     elif ncols == 5:
         spec = r">{\raggedright\arraybackslash}p{2.0cm} *{4}{>{\raggedright\arraybackslash}X}"
     elif ncols == 4:
@@ -117,9 +119,8 @@ def render_cards(doc):
     output = [
         r"\newgeometry{left=1.25in,right=1.25in,top=1in,bottom=1in}",
         r"\phantomsection",
-        r"\chapter*{一、文献阅读卡}\label{chap:literature-cards}",
         r"\addcontentsline{toc}{chapter}{文献阅读卡}",
-        r"\clearpage",
+        r"\label{chap:literature-cards}",
         r"\setlength{\parindent}{0pt}",
         r"\setlength{\parskip}{0pt}",
         r"\setstretch{1.5}",
@@ -175,7 +176,7 @@ def render_cards(doc):
             else:
                 output.append(tex_escape(paragraph) + r"\par")
             body_index += 1
-    output += [r"\restoregeometry", ""]
+    output += [r"\restoregeometry", r"\thispagestyle{empty}", ""]
     return "\n".join(output)
 
 
@@ -327,7 +328,17 @@ def parse_reference(raw):
     elif kind == "R":
         entrytype, fields = "techreport", {"institution": before_year}
     else:
-        entrytype, fields = "online", {"note": tail}
+        arxiv_match = re.search(r"arXiv:(\d{4}\.\d{4,5})(?:v\d+)?", tail, flags=re.IGNORECASE)
+        if arxiv_match:
+            arxiv_id = arxiv_match.group(1)
+            entrytype, fields = "misc", {
+                "eprint": arxiv_id,
+                "eprinttype": "arxiv",
+                "url": f"https://arxiv.org/abs/{arxiv_id}",
+                "urldate": "2026-09-20",
+            }
+        else:
+            entrytype, fields = "online", {"note": tail}
 
     fields.update({
         "author": bib_authors(data["authors"]),
@@ -343,7 +354,7 @@ def parse_reference(raw):
         if volume_match.group(2):
             fields["number"] = volume_match.group(2)
 
-    doi_match = re.search(r"DOI:\s*([^,.\s]+)", tail, flags=re.IGNORECASE)
+    doi_match = re.search(r"DOI:\s*(10\.\d{4,9}/[-._;()/:A-Z0-9]+)", tail, flags=re.IGNORECASE)
     if doi_match:
         fields["doi"] = doi_match.group(1)
 
