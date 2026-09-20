@@ -759,7 +759,7 @@ gbcitelocal=chinese]{biblatex}
 \newcommand{\enabledottedtoc}{%显示标题、指引线和页码
   \titlecontents{chapter}
               [0.0em]
-              {\vspace{0.3em}\bfseries\hei\sihao\addvspace{6bp minus6bp}}
+              {\vspace{0.35em}\bfseries\hei\sihao[1.45]\addvspace{7bp minus5bp}}
               {\thecontentslabel\hspace{1em}}
               {}
               {\normalfont\dotfill\textrm{\contentspage[(\thecontentspage)]}}
@@ -776,7 +776,7 @@ gbcitelocal=chinese]{biblatex}
 % 定义其它各级子标题的目录项格式
 \titlecontents{section}
               [3.24em]
-              {\vspace{0.3em}\sihao\addvspace{6bp minus6bp}}
+              {\vspace{0.18em}\normalfont\song\xiaosi[1.4]\addvspace{3bp minus3bp}}
               {\contentslabel{2.76em}}
               {}
               {\dotfill\textrm{\contentspage[(\thecontentspage)]}
