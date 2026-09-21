@@ -46,4 +46,8 @@
 \addcontentsline{toc}{chapter}{参考文献}
 \printbibliography[heading=bibliography,title=参考文献]
 
+% 按学院模板要求，以与首页完全相同的封面作为报告封底。
+\clearpage
+\includepdf[pages=1,scale=1.154,pagecommand={\thispagestyle{empty}}]{figures/template-cover.pdf}
+
 \end{document}
