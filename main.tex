@@ -30,6 +30,28 @@
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \emergencystretch=3em
 
+% 开题报告由三个并列模块组成。模块标题使用中文序号，
+% 各模块内部按“1、1.1、1.1.1”独立编号。
+\setcounter{tocdepth}{2}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\titlecontents{subsection}
+              [5.8em]
+              {\vspace{0.10em}\normalfont\song\xiaosi[1.35]}
+              {\contentslabel{3.2em}}
+              {}
+              {\dotfill\textrm{\contentspage[(\thecontentspage)]}}
+
+\newcommand{\reportmodule}[3]{%
+  \setcounter{chapter}{#1}% 用于图表编号
+  \setcounter{section}{0}%
+  \setcounter{table}{0}%
+  \setcounter{figure}{0}%
+  \chapter*{#2、#3}%
+  \addcontentsline{toc}{chapter}{#2、#3}%
+}
+
 \begin{document}
 \graphicspath{{figures/}}
 
