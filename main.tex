@@ -15,6 +15,9 @@
 \usepackage{caption}
 \usepackage{microtype}
 \usepackage{pdfpages}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 
 % The source report uses numeric citations; keep them real and clickable.
 \ExecuteBibliographyOptions{sorting=none}
@@ -27,9 +30,8 @@
 \graphicspath{{figures/}}
 
 \frontmatter
-% Use page 1 exported directly from the Word template so the cover keeps
-% the original template's typography, logo, rules, and spacing.
-\includepdf[pages=1,scale=1.154,pagecommand={\thispagestyle{empty}}]{figures/template-cover.pdf}
+% Use the user-prepared cover and form-instructions pages without redrawing them.
+\input{body/cover}
 \input{body/attention}
 
 \pagenumbering{gobble}
@@ -46,8 +48,7 @@
 \addcontentsline{toc}{chapter}{参考文献}
 \printbibliography[heading=bibliography,title=参考文献]
 
-% 按学院模板要求，以与首页完全相同的封面作为报告封底。
-\clearpage
-\includepdf[pages=1,scale=1.154,pagecommand={\thispagestyle{empty}}]{figures/template-cover.pdf}
+% 使用用户完成的封底页，不再复用或覆盖首页。
+\reportbackcovercontent
 
 \end{document}

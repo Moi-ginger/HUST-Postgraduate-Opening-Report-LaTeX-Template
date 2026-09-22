@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[
+  paperwidth=595.28pt,
+  paperheight=841.89pt,
+  margin=0pt
+]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fontspec}
+\setmainfont{SimSun.ttf}[Path=supply/font/]
+\newfontfamily\coverlabel{SimHei.ttf}[Path=supply/font/]
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay]
+  \node[anchor=north west,inner sep=0pt] at (current page.north west) {%
+    \includegraphics[width=\paperwidth,height=\paperheight]{tmp/pdfs/cover-label-fix/template-cover-page1.png}%
+  };
+  % Clear the complete original label and title, then redraw both together.
+  \fill[white]
+    ([xshift=88pt,yshift=-374pt]current page.north west)
+    rectangle
+    ([xshift=530pt,yshift=-407pt]current page.north west);
+  \node[
+    anchor=west,
+    inner sep=0pt,
+    font=\coverlabel\fontsize{14pt}{17pt}\selectfont
+  ] at ([xshift=95pt,yshift=-391pt]current page.north west)
+  {题目：};
+  \node[
+    anchor=west,
+    inner sep=0pt,
+    text width=370pt,
+    align=left,
+    font=\fontsize{14pt}{17pt}\selectfont
+  ] at ([xshift=145pt,yshift=-391pt]current page.north west)
+  {面向AI智能体运行问题分析的证据呈现与交互设计研究};
+\end{tikzpicture}
+\null
+\end{document}

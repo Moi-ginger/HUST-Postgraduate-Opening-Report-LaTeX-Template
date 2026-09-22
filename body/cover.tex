@@ -1,29 +1,62 @@
-\begin{titlepage}
-\thispagestyle{empty}
-\begin{center}
-\vspace*{0.65cm}
-\includegraphics[width=8.2cm]{hust-logo.png}\par
-\vspace{1.15cm}
-{\zhongsong\bfseries\erhao 研究生（文献阅读与选题）报告\par}
-\vspace{0.55cm}
-{\zhongsong\bfseries\sihao $\square$ 文献阅读、\quad $\square$ 选题、\quad $\square$ 文献阅读与选题、\quad $\square$ 论文中期进展\par}
-\vspace{1.55cm}
-{\zhongsong\bfseries\xiaosan 题 目：AI Agent运行轨迹与机制关联的\par}
-\vspace{0.25cm}
-{\zhongsong\bfseries\xiaosan \hspace{3.65em}交互设计研究\par}
-\vfill
-{\zhongsong\bfseries\xiaosan
-\renewcommand{\arraystretch}{1.7}
-\begin{tabular}{@{}r@{\quad}l@{}}
-学号 & \underline{\makebox[7.0cm][l]{M202570493}}\\
-姓名 & \underline{\makebox[7.0cm][l]{陈思静}}\\
-专业 & \underline{\makebox[7.0cm][l]{设计学}}\\
-指导教师 & \underline{\makebox[7.0cm][l]{何心}}\\
-院（系、所） & \underline{\makebox[7.0cm][l]{设计学院}}
-\end{tabular}
-\par}
-\vspace{0.7cm}
+% 首页与封底采用用户完成的 Word 导出稿，并同步当前论文题目。
+\newcommand{\reportcovertitleoverlay}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white]
+      ([xshift=78pt,yshift=-371pt]current page.north west)
+      rectangle
+      ([xshift=526pt,yshift=-403pt]current page.north west);
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      font=\bfseries\fontsize{14pt}{17pt}\selectfont
+    ] at ([xshift=82pt,yshift=-389pt]current page.north west)
+    {题目：};
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      text width=382pt,
+      align=left,
+      font=\fontsize{12pt}{16pt}\selectfont
+    ] at ([xshift=143pt,yshift=-389pt]current page.north west)
+    {工具调用型大语言模型智能体故障诊断的信息表征与交互设计研究};
+  \end{tikzpicture}%
+}
 
-{\zhongsong\bfseries\xiaosan 华中科技大学设计学院制\par}
-\end{center}
-\end{titlepage}
+\newcommand{\reportbackcovertitleoverlay}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white]
+      ([xshift=92pt,yshift=-318pt]current page.north west)
+      rectangle
+      ([xshift=540pt,yshift=-350pt]current page.north west);
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      font=\bfseries\fontsize{14pt}{17pt}\selectfont
+    ] at ([xshift=96pt,yshift=-336pt]current page.north west)
+    {题目：};
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      text width=382pt,
+      align=left,
+      font=\fontsize{12pt}{16pt}\selectfont
+    ] at ([xshift=157pt,yshift=-336pt]current page.north west)
+    {工具调用型大语言模型智能体故障诊断的信息表征与交互设计研究};
+  \end{tikzpicture}%
+}
+
+\newcommand{\reportcovercontent}{%
+\includepdf[
+  pages=1,
+  pagecommand={\thispagestyle{empty}\reportcovertitleoverlay}
+]{figures/开题报告格式-Word导出.pdf}%
+}
+
+\newcommand{\reportbackcovercontent}{%
+\includepdf[
+  pages=4,
+  pagecommand={\thispagestyle{empty}\reportbackcovertitleoverlay}
+]{figures/开题报告格式-Word导出.pdf}%
+}
+
+\reportcovercontent
