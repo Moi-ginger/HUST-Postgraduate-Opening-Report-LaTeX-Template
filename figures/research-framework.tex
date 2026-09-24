@@ -1,0 +1,96 @@
+% 论文整体结构图：使用TikZ矢量绘制，随整合版直接编译。
+\begingroup
+\definecolor{frameworkBlue}{HTML}{376DA5}
+\definecolor{frameworkLight}{HTML}{F2F6FA}
+\definecolor{frameworkLine}{HTML}{91A4B7}
+\definecolor{frameworkPhase}{HTML}{566675}
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  head/.style={anchor=west,text=white,font=\bfseries\fontsize{10.5pt}{13pt}\selectfont,inner sep=0pt},
+  cell/.style={draw=frameworkLine,fill=white,align=center,inner sep=3pt,font=\fontsize{9.5pt}{12pt}\selectfont,minimum height=0.66cm},
+  outcome/.style={align=center,text=frameworkPhase,font=\fontsize{9.5pt}{12pt}\selectfont,inner sep=0pt},
+  phase/.style={text=white,align=center,font=\bfseries\fontsize{10pt}{13pt}\selectfont,inner sep=0pt},
+  flow/.style={-{Stealth[length=2mm]},draw=frameworkLine,line width=0.7pt}
+]
+% 第一、二章：研究基础
+\fill[frameworkPhase] (0,0) rectangle (1.05,-3.25);
+\node[phase] at (0.525,-1.625) {研\\究\\基\\础};
+\draw[frameworkLine,fill=frameworkLight] (1.2,0) rectangle (14.4,-1.35);
+\fill[frameworkBlue] (1.2,0) rectangle (14.4,-0.48);
+\node[head] at (1.45,-0.24) {第一章\quad 绪论};
+\node[cell,text width=3.72cm] at (3.50,-0.91) {1.1 研究背景};
+\node[cell,text width=3.72cm] at (7.80,-0.91) {1.2 目的与意义};
+\node[cell,text width=3.72cm] at (12.10,-0.91) {1.3 研究问题与路径};
+
+\draw[frameworkLine,fill=frameworkLight] (1.2,-1.60) rectangle (14.4,-3.25);
+\fill[frameworkBlue] (1.2,-1.60) rectangle (14.4,-2.08);
+\node[head] at (1.45,-1.84) {第二章\quad 相关研究};
+\node[cell,text width=3.72cm] at (3.50,-2.52) {2.1 溯源任务与困难};
+\node[cell,text width=3.72cm] at (7.80,-2.52) {2.2 现有设计与证据};
+\node[cell,text width=3.72cm] at (12.10,-2.52) {2.3 研究不足与切入点};
+\node[outcome] at (7.80,-3.02) {形成研究范围与设计切入点};
+\draw[flow] (7.80,-1.35) -- (7.80,-1.60);
+
+% 第三章：RQ1
+\fill[frameworkPhase] (0,-3.50) rectangle (1.05,-5.85);
+\node[phase] at (0.525,-4.675) {发\\现\\问\\题};
+\draw[frameworkLine,fill=frameworkLight] (1.2,-3.50) rectangle (14.4,-5.85);
+\fill[frameworkBlue] (1.2,-3.50) rectangle (14.4,-3.98);
+\node[head] at (1.45,-3.74) {第三章\quad 开发者错误溯源困难研究（RQ1）};
+\node[cell,text width=3.72cm] (interview) at (3.50,-4.65) {3.1 真实事件访谈\\现用工具与排错经历};
+\node[cell,text width=3.72cm] (observation) at (7.80,-4.65) {3.2 任务观察\\材料查找与原因判断};
+\node[cell,text width=3.72cm] (analysis) at (12.10,-4.65) {3.3 跨案例分析\\困难、条件与影响};
+\draw[flow] (interview.east) -- (observation.west);
+\draw[flow] (observation.east) -- (analysis.west);
+\node[outcome,text width=12cm] at (7.80,-5.46) {阶段产出：溯源困难与设计需求\quad →\quad 确定一项关键困难};
+\draw[flow] (7.80,-3.25) -- (7.80,-3.50);
+
+% 第四章：RQ2，信息表征与交互操作共同构成方案
+\fill[frameworkPhase] (0,-6.10) rectangle (1.05,-8.95);
+\node[phase] at (0.525,-7.525) {提\\出\\设\\计\\方\\案};
+\draw[frameworkLine,fill=frameworkLight] (1.2,-6.10) rectangle (14.4,-8.95);
+\fill[frameworkBlue] (1.2,-6.10) rectangle (14.4,-6.58);
+\node[head] at (1.45,-6.34) {第四章\quad 信息表征与交互设计（RQ2）};
+\node[cell,text width=5.65cm] (representation) at (4.55,-7.20) {4.1 信息表征方案\\信息选择、组织层级、关系与来源标识};
+\node[cell,text width=5.65cm] (interaction) at (11.05,-7.20) {4.2 交互机制设计\\操作入口、步骤衔接与系统反馈};
+\node[cell,text width=9.5cm] (prototype) at (7.80,-8.13) {4.3 备选方案比较、任务走查与研究原型迭代};
+\draw[flow] (representation.south) -- (representation.south |- prototype.north);
+\draw[flow] (interaction.south) -- (interaction.south |- prototype.north);
+\node[outcome] at (7.80,-8.68) {阶段产出：表征方案、交互机制、研究原型及设计取舍记录};
+\draw[flow] (7.80,-5.85) -- (7.80,-6.10);
+
+% 第五章：RQ3
+\fill[frameworkPhase] (0,-9.20) rectangle (1.05,-11.55);
+\node[phase] at (0.525,-10.375) {验\\证\\方\\案};
+\draw[frameworkLine,fill=frameworkLight] (1.2,-9.20) rectangle (14.4,-11.55);
+\fill[frameworkBlue] (1.2,-9.20) rectangle (14.4,-9.68);
+\node[head] at (1.45,-9.44) {第五章\quad 设计评价与适用边界（RQ3）};
+\node[cell,text width=3.72cm] (pilot) at (3.50,-10.34) {5.1 案例与预实验\\核查条件、任务及评分};
+\node[cell,text width=3.72cm] (experiment) at (7.80,-10.34) {5.2 对照评价\\原因判断、时间与负担};
+\node[cell,text width=3.72cm] (transfer) at (12.10,-10.34) {5.3 新案例走查\\作用条件与失效情境};
+\draw[flow] (pilot.east) -- (experiment.west);
+\draw[flow] (experiment.east) -- (transfer.west);
+\node[outcome] at (7.80,-11.17) {阶段产出：设计效果证据与适用边界\quad →\quad 修订设计结论};
+\draw[flow] (7.80,-8.95) -- (7.80,-9.20);
+
+% 第六、七章：成果提炼
+\fill[frameworkPhase] (0,-11.80) rectangle (1.05,-15.65);
+\node[phase] at (0.525,-13.725) {成\\果\\提\\炼};
+\draw[frameworkLine,fill=frameworkLight] (1.2,-11.80) rectangle (14.4,-14.05);
+\fill[frameworkBlue] (1.2,-11.80) rectangle (14.4,-12.28);
+\node[head] at (1.45,-12.04) {第六章\quad 设计原则与讨论};
+\node[cell,text width=3.72cm] at (3.50,-12.93) {6.1 设计原则\\问题、操作与作用};
+\node[cell,text width=3.72cm] at (7.80,-12.93) {6.2 证据与适用边界\\使用者、任务与信息条件};
+\node[cell,text width=3.72cm] at (12.10,-12.93) {6.3 设计学贡献\\可复用认识与研究局限};
+\node[outcome] at (7.80,-13.68) {综合前期发现、方案比较与评价结果，形成有依据的设计原则};
+\draw[flow] (7.80,-11.55) -- (7.80,-11.80);
+
+\draw[frameworkLine,fill=frameworkLight] (1.2,-14.30) rectangle (14.4,-15.65);
+\fill[frameworkBlue] (1.2,-14.30) rectangle (14.4,-14.78);
+\node[head] at (1.45,-14.54) {第七章\quad 总结与展望};
+\node[cell,text width=3.72cm] at (3.50,-15.21) {7.1 研究问题回答};
+\node[cell,text width=3.72cm] at (7.80,-15.21) {7.2 成果总结};
+\node[cell,text width=3.72cm] at (12.10,-15.21) {7.3 后续研究};
+\draw[flow] (7.80,-14.05) -- (7.80,-14.30);
+\end{tikzpicture}
+\endgroup
